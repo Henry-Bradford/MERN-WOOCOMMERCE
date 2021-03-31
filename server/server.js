@@ -4,6 +4,7 @@ const mongoose = require("mongoose")
 const morgan = require("morgan")
 const path = require("path")
 const users = require('./routes/user.api');
+const ProductRouter = require('./routes/product.api')
 const connection = require('./services/mongoose.service')
 const passport = require('passport');
 const cors = require("cors");
@@ -24,6 +25,7 @@ app.use(express.json());
 
 // Routes
 app.use('/', users);
+ProductRouter.routesConfig(app);
 
 // Passport Middleware
 app.use(passport.initialize());

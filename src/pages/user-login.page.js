@@ -2,31 +2,35 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
-function Login() {
+import {useDispatch} from 'react-redux'
+import {loginUser} from '../actions/user_action'
+
+import { withRouter } from 'react-router-dom'
+
+function Login({history}) {
+    const dispatch = useDispatch();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
-    // useEffect(() => {
-    //     // If logged in and user navigates to Login page, should redirect them to dashboard
-    //     if (this.props.auth.isAuthenticated) {
-    //         this.props.history.push("/dashboard");
-    //     }
-    // }, [])
 
     const handleSubmit = () => {          
         const userData = {
             email: email,
             password: password
         }
-        axios.post("http://localhost:8000/login", userData)
-            .then((res) => {
-                console.log(userData.email);
-                alert("Email", userData.email);
-                window.location.href = "/"
-            })
-            .catch((e) => {
+        // axios.post("http://localhost:8000/login", userData)
+        //     .then((res) => {
+        //         window.location.href = "/dashboard"
+        //     })
+        //     .catch((e) => {
 
-            })
+        //     })
+        dispatch(loginUser(userData)).then(res =>{
+            console.log("response  ", res.payload)
+            if (res.payload.success) {
+              history.push("/dashboard")
+            }
+          })
+          .catch (err => console.log("error occured", err))
     }
 
     return (
@@ -149,20 +153,4 @@ function Login() {
     )
 }
 
-// Login.propTypes = {
-//     loginUser: PropTypes.func.isRequired,
-//     auth: PropTypes.object.isRequired,
-//     errors: PropTypes.object.isRequired
-// }
-
-// const mapStateToProps = state => ({
-//     auth: state.auth,
-//     errors: state.errors
-// })
-
-// export default connect(
-//     mapStateToProps,
-//     { loginUser }
-// )(Login);
-
-export default Login;
+export default Login

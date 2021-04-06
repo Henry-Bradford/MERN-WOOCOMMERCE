@@ -13,6 +13,7 @@ import Login from '../pages/user-login.page';
 import Register from '../pages/user-register.page';
 import AdminRouter from './adminRouter';
 import AuthRouter from './authRouter';
+import ProductDetail from '../pages/products/productDetail.page'
 
 function MainRouter() {
     return (
@@ -20,8 +21,10 @@ function MainRouter() {
             <div>
                 <AuthNavbar />
                 <Switch>
+                    <Route exact path="/product-detail" component={ProductDetail} />
                     <Route exact path="/products" component={ProductList} />
                     <Route exact path="/" component={Landing} />
+                    <Route exact path="/dashboard" component={Dashboard} />
                     <Route exact path="/login" component={Login} />
                     <Route exact path="/register" component={Register} />
                 </Switch>

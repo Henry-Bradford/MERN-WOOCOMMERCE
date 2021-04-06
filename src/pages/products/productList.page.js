@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom';
 
 function ProductList() {
     const [products, setProducts] = useState([])
@@ -9,11 +10,10 @@ function ProductList() {
     })
 
     const getProducts = () => {
-        axios.get('http://localhost:8000/products/page/1')
+        axios.get('http://localhost:8000/products/total')
             .then((response) => {
                 const data = response.data
                 setProducts(data);    
-                console.log(products)           
             })
     }
 
@@ -48,11 +48,14 @@ function ProductList() {
                     {products.map((product, index) => (
                         <tr key={index} className="bg-white border-4 border-gray-200">
                             <td className="px-16 py-2 flex flex-row items-center">
-                            <img
-                                className="h-16 w-16 rounded-2xl object-cover "
-                                src={product.images[0].src}
-                                alt=""
-                            />
+                                <Link to={"/product-detail"}>
+                                    <img
+                                    className="h-16 w-16 rounded-2xl object-cover "
+                                    src={product.images[0].src}
+                                    alt=""
+                                    />
+                                </Link>
+                            
                             </td>
                             <td>
                                 <span className="text-center ml-2 font-semibold">{ product.name }</span>

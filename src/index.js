@@ -4,10 +4,18 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { Provider } from 'react-redux'
+import createStoreWithMiddleware from './store'
+import Reducer from './reducers'
+
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={createStoreWithMiddleware(
+    Reducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ &&
+      window.__REDUX_DEVTOOLS_EXTENSION__()
+  )}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 

@@ -25,8 +25,7 @@ function Register() {
         }
         axios.post("http://localhost:8000/register",newUser )
         .then((res)=>{
-            window.location.href = "/";
-            window.alert(newUser.email);
+            window.location.href = "/login";
         })
         .catch((e)=>{
             window.alert("Error")

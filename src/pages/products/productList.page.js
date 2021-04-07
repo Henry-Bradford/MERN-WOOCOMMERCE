@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
+import { productDelete, productDetail } from '../../actions/product_action';
 
-function ProductList() {
+function ProductList({history}) {
+    const dispatch = useDispatch();
     const [products, setProducts] = useState([])
+    const [single, setSingle] = useState()
 
     useEffect(() => {
         getProducts();
@@ -15,6 +19,32 @@ function ProductList() {
                 const data = response.data
                 setProducts(data);    
             })
+    }
+
+    const Detail = (e) => {
+        const postData = {
+            id: e
+        }
+        dispatch(productDetail(postData))
+            .then((res) => {
+                console.log("Payload",res.payload)
+                if(res.payload) {                    
+                    history.push('/product-detail')
+                }
+            })
+        setSingle(e);
+    }
+
+    const Delete = (e) => {
+        const postData = {
+            id: e,
+        }
+        dispatch(productDelete(postData))
+            .then((res) => {
+                console.log("Product Successfully Deleted")
+
+            })
+        setSingle(e)
     }
 
     return (
@@ -48,14 +78,13 @@ function ProductList() {
                     {products.map((product, index) => (
                         <tr key={index} className="bg-white border-4 border-gray-200">
                             <td className="px-16 py-2 flex flex-row items-center">
-                                <Link to={"/product-detail"}>
+                                <button onClick={() => {Detail(product.id)}}>
                                     <img
                                     className="h-16 w-16 rounded-2xl object-cover "
                                     src={product.images[0].src}
                                     alt=""
                                     />
-                                </Link>
-                            
+                                </button>
                             </td>
                             <td>
                                 <span className="text-center ml-2 font-semibold">{ product.name }</span>
@@ -73,7 +102,8 @@ function ProductList() {
                             </td>
 
                             <td className="px-16 py-2">
-                                <button className="bg-red-500 text-white px-4 py-2 border rounded-md hover:bg-white hover:border-indigo-500 hover:text-black ">
+                                <button className="bg-red-500 text-white px-4 py-2 border rounded-md hover:bg-white hover:border-indigo-500 hover:text-black "
+                                onClick={() => {Delete(product.id)}}>
                                     Delete
                                 </button>
                             </td>

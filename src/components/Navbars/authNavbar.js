@@ -19,6 +19,9 @@ function AuthNavbar() {
                         <Link className="nav-link px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" to={"/dashboard"}>Dashboard</Link>
                     </li>
                     <li className="nav-item">
+                        <Link className="nav-link px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" to={"/analytics"}>Analytics</Link>
+                    </li>
+                    <li className="nav-item">
                         <Link className="nav-link px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" to={"/products"}>Products</Link>
                     </li>
                     <li className="nav-item">

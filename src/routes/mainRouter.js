@@ -14,6 +14,7 @@ import Register from '../pages/user-register.page';
 import AdminRouter from './adminRouter';
 import AuthRouter from './authRouter';
 import ProductDetail from '../pages/products/productDetail.page'
+import Analytics from '../pages/analytics/analytics';
 
 function MainRouter() {
     return (
@@ -21,6 +22,7 @@ function MainRouter() {
             <div>
                 <AuthNavbar />
                 <Switch>
+                    <Route exact path="/analytics" component={Analytics} />
                     <Route exact path="/product-detail" component={ProductDetail} />
                     <Route exact path="/products" component={ProductList} />
                     <Route exact path="/" component={Landing} />

@@ -16,14 +16,7 @@ function Login({history}) {
         const userData = {
             email: email,
             password: password
-        }
-        // axios.post("http://localhost:8000/login", userData)
-        //     .then((res) => {
-        //         window.location.href = "/dashboard"
-        //     })
-        //     .catch((e) => {
-
-        //     })
+        }        
         dispatch(loginUser(userData)).then(res =>{
             console.log("response  ", res.payload)
             if (res.payload.success) {

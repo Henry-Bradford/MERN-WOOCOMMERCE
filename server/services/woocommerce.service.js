@@ -15,6 +15,19 @@ exports.getTotal = (req, res) => {
         res.json(response.data)
       })
       .catch((error) => {
+
+      });
+  }
+  process();
+};
+
+exports.getProducts = (req, res) => {
+  async function process() {
+    WooCommerce.get("products")
+      .then((response) => {
+        res.json(response.data)
+      })
+      .catch((error) => {
         console.log(error.response.data);
       });
   }
@@ -40,15 +53,32 @@ exports.getByPage = (req, res) => {
 };
 
 exports.getById = (req, res) => {
-  const id = req.params._id;
+  const id = req.params.id;
   async function process() {
     WooCommerce.get("products/" + id)
       .then((response) => {
         res.json(response.data)
       })
       .catch((error) => {
-
+        res.status(500).send("Server Error");
       });
   }
   process();
 };
+
+exports.deleteById = (req, res) => {
+  const id = req.params.id;
+  async function process() {
+    WooCommerce.delete("products/" + id, {
+      force: true
+    })
+      .then((response) => {
+        res.json(response.data)
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+      });
+  }
+  process();
+}

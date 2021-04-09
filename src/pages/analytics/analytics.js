@@ -17,21 +17,21 @@ function Analytics() {
         const G_Num = [];
         const A_Num = [];
         const V_Num = [];
-        axios.get('http://localhost:8000/products/overview')
+        axios.get('http://localhost:8000/products/total')
             .then((response) => {
                 const data = response.data
                 setProducts(data);
                 for (let index = 0; index < data.length; index++) {
-                    if (data[index].type == "simple") {
+                    if (data[index].type === "simple") {
                         S_Num.push("simple")                        
                     }
-                    if (data[index].type == "grouped") {
+                    if (data[index].type === "grouped") {
                         G_Num.push("grouped")                        
                     }
-                    if (data[index].type == "external") {
+                    if (data[index].type === "external") {
                         A_Num.push("external")                        
                     }
-                    if (data[index].type == "variable") {
+                    if (data[index].type === "variable") {
                         V_Num.push("variable")                        
                     }
                 }

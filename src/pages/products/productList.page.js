@@ -17,7 +17,8 @@ function ProductList({history}) {
         axios.get('http://localhost:8000/products/total')
             .then((response) => {
                 const data = response.data
-                setProducts(data);    
+                setProducts(data);   
+                console.log("Products", data) 
             })
     }
 
@@ -30,6 +31,19 @@ function ProductList({history}) {
                 console.log("Payload",res.payload)
                 if(res.payload) {                    
                     history.push('/product-detail')
+                }
+            })
+        setSingle(e);
+    }
+    const Update = (e) => {
+        const postData = {
+            id: e
+        }
+        dispatch(productDetail(postData))
+            .then((res) => {
+                console.log("Payload",res.payload)
+                if(res.payload) {                    
+                    history.push('/product-update')
                 }
             })
         setSingle(e);
@@ -96,7 +110,9 @@ function ProductList({history}) {
                                 <span>{ product.stock_quantity }</span>
                             </td>                            
                             <td className="px-16 py-2">
-                                <button className="bg-indigo-500 text-white px-4 py-2 border rounded-md hover:bg-white hover:border-indigo-500 hover:text-black ">
+                                <button className="bg-indigo-500 text-white px-4 py-2 border rounded-md hover:bg-white hover:border-indigo-500 hover:text-black "
+                                    onClick={() => {Update(product.id)}}
+                                    >
                                     Edit
                                 </button>
                             </td>

@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
-function ProductDetail() {
+function ProductUpdate() {
     const productName = useSelector(state => state.productReducer)
     const [product, setProduct] = useState([])
+    const [title, setTitle] = useState('')
+    const [price, setPrice] = useState('')
+    const [description, setDescription] = useState('')
+
     useEffect(() => {
         setProduct(productName.product_detail)
         console.log("product", product)
     }, [])    
-
+    console.log("Product Name", product.name)
     return (
         <div className="grid place-items-center h-screen bg-gray-100">
             <div className="flex flex-col md:flex-row py-10 px-5 bg-white rounded-md shadow-lg w-3/4 md:max-w-7xl">
@@ -47,9 +51,23 @@ function ProductDetail() {
                 </div>
                 <div className="text-indigo-500">
                 <small className="uppercase"></small>
-                <h3 className="uppercase text-black text-2xl font-medium">{product.name}</h3>
-                <h3 className="text-2xl font-semibold mb-7">${ product.sale_price }</h3>
-                <small className="text-black">{product.description}</small>
+                <input className="uppercase text-black text-2xl font-medium"
+                    value={product.name}
+                    onChange={e => setTitle(e.target.value)}
+                >
+                   
+                </input>
+                <input className="text-2xl font-semibold mb-7"
+                    value={product.price}
+                    onChange={e => setPrice(e.target.value)}
+                >
+                    
+                </input>
+                <input className="text-black"
+                    value={product.description}
+                    onChange={e => setDescription(e.target.value)}
+                >
+                </input>
                 <div className="flex gap-0.5 mt-4">
                     <button id="addToCartButton" className="bg-indigo-600 hover:bg-indigo-500 focus:outline-none transition text-white uppercase px-8 py-3">add to cart</button>
                     <button id="likeButton" className="bg-indigo-600 hover:bg-indigo-500 focus:outline-none transition text-white uppercase p-3">
@@ -64,6 +82,4 @@ function ProductDetail() {
     )
 }
 
-export default ProductDetail
-
-
+export default ProductUpdate

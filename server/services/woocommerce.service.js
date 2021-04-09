@@ -66,6 +66,24 @@ exports.getById = (req, res) => {
   process();
 };
 
+exports.updateById = (res, req) => {
+  const id = req.params.id;
+  const data = {
+    regular_price: "24.54"
+  };
+  async function process() {
+    WooCommerce.put("products/" + id, data)
+    .then((response) => {
+      res.json(response.json)
+      console.log(response.data);
+    })
+    .catch((error) => {
+      console.log(error.response.data);
+    });
+  }
+  process();
+}
+
 exports.deleteById = (req, res) => {
   const id = req.params.id;
   async function process() {

@@ -6,4 +6,5 @@ exports.routesConfig = function (app) {
   app.get("/products/:id", [Controller.getById]);
   app.get("/products/delete/:id", [Controller.deleteById]);
   app.get("/products/overview", [Controller.getProducts]);
+  app.get("/products/update/:id", [Controller.updateById]);
 };

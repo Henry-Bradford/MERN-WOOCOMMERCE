@@ -43,7 +43,7 @@ function ProductList({history}) {
             .then((res) => {
                 console.log("Payload",res.payload)
                 if(res.payload) {                    
-                    history.push('/product-update')
+                    history.push('/products/product-update')
                 }
             })
         setSingle(e);

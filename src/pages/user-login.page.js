@@ -6,6 +6,7 @@ import {useDispatch} from 'react-redux'
 import {loginUser} from '../actions/user_action'
 
 import { withRouter } from 'react-router-dom'
+import AuthNavbar from '../components/Navbars/authNavbar'
 
 function Login({history}) {
     const dispatch = useDispatch();
@@ -20,7 +21,7 @@ function Login({history}) {
         dispatch(loginUser(userData)).then(res =>{
             console.log("response  ", res.payload)
             if (res.payload.success) {
-              history.push("/dashboard")
+              history.push("/admin")
             }
           })
           .catch (err => console.log("error occured", err))

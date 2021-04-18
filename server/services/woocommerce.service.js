@@ -68,13 +68,11 @@ exports.getById = (req, res) => {
 
 exports.updateById = (res, req) => {
   const id = req.params.id;
-  const data = {
-    regular_price: "24.54"
-  };
+  const data = req.body;
   async function process() {
     WooCommerce.put("products/" + id, data)
     .then((response) => {
-      res.json(response.json)
+      res.json(response.data)
       console.log(response.data);
     })
     .catch((error) => {

@@ -15,7 +15,7 @@ function AuthNavbar() {
                 </div>
                 <div className="lg:flex flex-grow items-center">
                 <ul className="flex flex-col lg:flex-row list-none ml-auto">
-                    <li className="nav-item">
+                    {/* <li className="nav-item">
                         <Link className="nav-link px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" to={"/dashboard"}>Dashboard</Link>
                     </li>
                     <li className="nav-item">
@@ -23,12 +23,12 @@ function AuthNavbar() {
                     </li>
                     <li className="nav-item">
                         <Link className="nav-link px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" to={"/products"}>Products</Link>
-                    </li>
+                    </li> */}
                     <li className="nav-item">
-                        <Link className="nav-link px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" to={"/login"}>Login</Link>
+                        <Link className="nav-link px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" to={"/auth/login"}>Login</Link>
                     </li>
                     <li className="nav-item">                       
-                        <Link className="nav-link px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" to={"/register"}>Signup</Link>                        
+                        <Link className="nav-link px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" to={"/auth/register"}>Signup</Link>                        
                     </li>
                     <li className="nav-item">
                         <a className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="#pablo">

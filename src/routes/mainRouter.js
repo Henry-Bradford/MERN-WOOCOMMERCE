@@ -22,17 +22,11 @@ function MainRouter() {
     return (
         <Router>
             <div>
-                <AuthNavbar />
+                {/* <AuthNavbar /> */}
                 <Switch>
-                    <Route exact path="/product-update" component={ProductUpdate} />
-                    <Route exact path="/productdel-modal" component={ProductDelModal} />
-                    <Route exact path="/analytics" component={Analytics} />
-                    <Route exact path="/product-detail" component={ProductDetail} />
-                    <Route exact path="/products" component={ProductList} />
-                    <Route exact path="/" component={Landing} />
-                    <Route exact path="/dashboard" component={Dashboard} />
-                    <Route exact path="/login" component={Login} />
-                    <Route exact path="/register" component={Register} />
+                    <Route path="/admin" component={AdminRouter} />
+                    <Route path="/auth" component={AuthRouter} />
+                    <Route path="/" component={Landing} />             
                 </Switch>
             </div>            
         </Router>
